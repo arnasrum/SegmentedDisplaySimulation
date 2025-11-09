@@ -5,14 +5,14 @@
 using namespace std;
 
 class SegmentedDisplay {
-    
     int segments = 16;
-    vector<Led> lights;
+    vector<Led*> lights;
+
 
     public:
         SegmentedDisplay();
         ~SegmentedDisplay();
-        
+        Led* getLightAt(int index);
         void printDisplay();
 
 };

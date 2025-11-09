@@ -1,13 +1,28 @@
 #include <iostream>
 #include "../include/Led.h"
+#include <vector>
+using namespace std;
 
 Led::Led() {
     this->isOn = false;
-    rgb = new int[3]{255, 255, 255};
+    rgb = {255, 255, 255};
 }
-Led::~Led() {
-    delete[] rgb;
-    rgb = nullptr;
+Led::Led(const Led &other) {
+    this->isOn = other.isOn;
+    rgb = {other.rgb[0], other.rgb[1], other.rgb[2]};
+}
+Led::~Led() {}
+
+bool Led::getPowerStatus() {
+    return this->isOn;
+}
+
+vector<int> Led::getColor() {
+    return vector {rgb[0], rgb[1], rgb[2]};
+}
+
+void Led::changeStatus(bool isOn) {
+    this->isOn = isOn;
 }
 
 void Led::toggle() {

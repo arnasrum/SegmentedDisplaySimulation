@@ -1,12 +1,55 @@
 #include<iostream>
-using namespace std;
+#include<array>
 #include "include/SegmentedDisplay.h"
+#include "include/SegmentPrinter.h"
+#include "include/Led.h"
+using namespace std;
+
+void placeholders() {
+    if(true) {
+        std::cout << " " << "\U0001FB7B" << " " << "\U0001FB7B" << std::endl;
+        std::cout << "\U0001FB75" << " " << " " << " " << "\U0001FB70" << std::endl;
+        std::cout << " " << "\U0001FB79" << " " << "\U0001FB79" << std::endl;
+        std::cout << "\U0001FB75" << " " << " " << " " << "\U0001FB70" << std::endl;
+        std::cout << " " << "  " << " " << "  " << std::endl;
+
+    } else {
+        std::cout << " " << "\U0001FB7B" << " " << "\U0001FB7B" << std::endl;
+        std::cout << "\U0001FB75" << "\\" << "|" << "/" << "\U0001FB70" << std::endl;
+        std::cout << " " << "\U0001FB79" << " " << "\U0001FB79" << std::endl;
+        std::cout << "\U0001FB75" << "/" << "|" << "\\" << "\U0001FB70" << std::endl;
+        std::cout << " " << "\U0001FB76" << " " << "\U0001FB76" << std::endl;
+    }
+}
 
 int main() {
-    cout << "Hello world" << endl;
-    
     SegmentedDisplay* sd = new SegmentedDisplay();
-    sd->printDisplay();
+
+    SegmentPrinter* sp = new SegmentPrinter();
+
+    string* onCharsArr = new string[16] {
+        "\U0001FB7B", "\U0001FB7B", 
+        "\U0001FB75", "\\", "|", "/", "\U0001FB70",
+        "\U0001FB79", "\U0001FB79", 
+        "\U0001FB75", "/", "|", "\\", "\U0001FB70",
+        "\U0001FB76", "\U0001FB76"
+    };
+    vector<string> offChars;
+    vector<string> onChars;
+    for(int i = 0; i < 16; i++) {
+        onChars.push_back(onCharsArr[i]);
+        offChars.push_back(" ");
+    }
+
+    sp->setupChars(offChars, onChars);
+
+
+
+    array<int, 3> onLights = {5, 6, 13};
+    for(int i = 0; i < size(onLights); i++)
+        sd->getLightAt(onLights[i])->toggle();
+
+    sp->printSegmentedDisplay(sd);
 
     return 0;
 }

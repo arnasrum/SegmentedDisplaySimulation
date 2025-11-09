@@ -1,19 +1,23 @@
 #ifndef LED_H
 #define LED_H
+#include <vector>
+using namespace std;
 
 
 class Led {
-    int* rgb;
+    vector<int> rgb;
     bool isOn;
     public: 
         Led();
         ~Led();
         Led(const Led& other);
 
-
-    void toggle();
-    void changeColor(int red, int green, int blue);
-    void printStatus();
+        bool getPowerStatus();
+        vector<int> getColor();
+        void changeStatus(bool isOn);
+        void toggle();
+        void changeColor(int red, int green, int blue);
+        void printStatus();
 };
 
 #endif // LED_H
