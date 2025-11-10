@@ -1,19 +1,20 @@
 #ifndef SEGMENTEDDISPLAY_H
 #define SEGMENTEDDISPLAY_H
-#include "./Led.h"
+#include "./Segment.h"
 #include<vector>
 using namespace std;
 
 class SegmentedDisplay {
-    int segments = 16;
-    vector<Led*> lights;
+    int numSegments = 16;
+    vector<Segment*> segments;
 
 
     public:
         SegmentedDisplay();
         ~SegmentedDisplay();
-        Led* getLightAt(int index);
+        Segment* getSegmentAt(int index);
         void printDisplay();
+        void turnOff();
 
 };
 

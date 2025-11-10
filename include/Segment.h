@@ -1,16 +1,16 @@
-#ifndef LED_H
-#define LED_H
+#ifndef SEGMENT_H
+#define SEGMENT_H
 #include <vector>
 using namespace std;
 
 
-class Led {
+class Segment {
     vector<int> rgb;
     bool isOn;
     public: 
-        Led();
-        ~Led();
-        Led(const Led& other);
+        Segment();
+        ~Segment();
+        Segment(const Segment& other);
 
         bool getPowerStatus();
         vector<int> getColor();
@@ -20,4 +20,4 @@ class Led {
         void printStatus();
 };
 
-#endif // LED_H
+#endif // Segment

@@ -1,9 +1,8 @@
 #include<iostream>
 #include<array>
-#include<vector>
 #include "include/SegmentedDisplay.h"
 #include "include/SegmentPrinter.h"
-#include "include/Segment.h"
+#include "include/Led.h"
 using namespace std;
 
 void placeholders() {
@@ -44,34 +43,12 @@ int main() {
 
     sp->setupChars(offChars, onChars);
 
-    vector<int> onLights = {0, 1, 4, 11, 14, 15};
-    for(int i = 0; i < size(onLights); i++)
-        sd->getSegmentAt(onLights[i])->toggle();
-    sp->printSegmentedDisplay(sd);
-    sd->turnOff();
-
-    onLights.clear();
-    onLights = {0, 1, 2, 7, 8, 13, 14, 15};
-    for(int i = 0; i < size(onLights); i++)
-        sd->getSegmentAt(onLights[i])->toggle();
-    sp->printSegmentedDisplay(sd);
-    sd->turnOff();
-    
-    onLights.clear();
-    onLights = {0, 1, 2, 6, 7, 8, 9, 13};
-    for(int i = 0; i < size(onLights); i++)
-        sd->getSegmentAt(onLights[i])->toggle();
-    sp->printSegmentedDisplay(sd);
-    sd->turnOff();
-
-    onLights.clear();
-    onLights = {2, 5, 7, 9, 12};
-    for(int i = 0; i < size(onLights); i++)
-        sd->getSegmentAt(onLights[i])->toggle();
-    sp->printSegmentedDisplay(sd);
-    sd->turnOff();
 
 
+    array<int, 3> onLights = {5, 6, 13};
+    for(int i = 0; i < size(onLights); i++)
+        sd->getLightAt(onLights[i])->toggle();
+    sp->printSegmentedDisplay(sd);
 
     return 0;
 }

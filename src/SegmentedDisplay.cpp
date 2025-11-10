@@ -1,24 +1,31 @@
 #include<iostream>
 #include "../include/SegmentedDisplay.h"
-#include "../include/Led.h"
+#include "../include/Segment.h"
 #include <vector>
 
 SegmentedDisplay::SegmentedDisplay() {
-    this->lights.reserve(this->segments);
-    for(int i = 0; i < this->segments; i++) {
-        this->lights.push_back(new Led());
+    this->segments.reserve(this->numSegments);
+    for(int i = 0; i < this->numSegments; i++) {
+        this->segments.push_back(new Segment());
     }
 }
 
 SegmentedDisplay::~SegmentedDisplay() {}
 
 
-Led* SegmentedDisplay::getLightAt(int index) {
-    if(this->segments <= index) {
+Segment* SegmentedDisplay::getSegmentAt(int index) {
+    if(this->numSegments <= index) {
         std::runtime_error("Trying to access out of bounds light");
     }
-    return this->lights.at(index);
+    return this->segments.at(index);
 }
+
+void SegmentedDisplay::turnOff() {
+    for(int i = 0; i < this->numSegments; i++)
+        if(this->segments[i]->getPowerStatus())
+            this->segments[i]->toggle();
+}
+
 
 void SegmentedDisplay::printDisplay() {
     

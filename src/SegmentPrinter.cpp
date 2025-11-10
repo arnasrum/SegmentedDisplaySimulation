@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../include/SegmentPrinter.h"
 #include "../include/SegmentedDisplay.h"
-#include "../include/Led.h"
+#include "../include/Segment.h"
 #include <vector>
 using namespace std;
 
@@ -39,7 +39,7 @@ void SegmentPrinter::printSegmentedDisplay(SegmentedDisplay* display) {
     vector<string> printChars;
     printChars.reserve(this->segments);
     for(int i = 0; i < this->segments; i++) {
-        Led* light = display->getLightAt(i);
+        Segment* light = display->getSegmentAt(i);
         if(light->getPowerStatus()) {
             printChars.push_back(this->onChars.at(i));
         } else {
